@@ -1,0 +1,54 @@
+.overview-row{
+    display: flex;
+    width: 100%;
+}
+.overview-container{
+    text-align: left;
+    height: 200px;
+    margin: 20px;
+    padding: 20px;
+    padding-top: 60px;
+    flex: 1;
+    background-color: rgb(49, 255, 49);
+    box-shadow: 5px 10px #1b1b1b85;
+    border-radius: 15px;
+    vertical-align: middle;
+    
+}
+.add-provider{
+    text-align: left;
+    position: absolute;
+    width: 50%;
+    margin-left: 15%;
+    background-color: rgb(241, 241, 241);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 10px #1b1b1b85;
+    bottom: 200px;
+}
+.add-provider label{
+    padding: 20px 0px 10px 10px;
+}
+.create-provider{
+    margin: 20px 0px;
+}
+
+.show-create-user{
+    display: inherit;
+}
+.hide-create-user{
+    display: none;
+}
+.turn-off-add-provider{
+    position: relative;
+    text-align: right;
+    left: 95%;
+    
+}
+.btn-add-div{
+    text-align: right;
+}
+.overview-container:hover{
+    background-color: rgb(9, 224, 9);
+    transition: 0.5s;
+}

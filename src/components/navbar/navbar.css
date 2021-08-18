@@ -1,0 +1,21 @@
+.navbar-main{
+    width: 400px;
+    height: 100%;
+    text-align: left;
+    padding: 25px;
+}
+
+.nav-item{
+    width: 100%;
+    margin-top: 20px;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: initial;
+}
+.nav-item:hover{
+    background-color: purple;
+    color: white;
+}

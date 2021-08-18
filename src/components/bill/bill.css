@@ -1,0 +1,28 @@
+.class-name{
+    display: inline;
+}
+.class-name-value{
+    display: inline;
+}
+.bill-form{
+    margin: 30px;
+    border: rgb(184, 184, 184) solid 1px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 10px;
+    box-shadow: 5px 10px #1b1b1b85;
+}
+.form-group{
+    width: 100%;
+}
+.provider-info .provider-data{
+    display: inline;
+}
+.bill-form .row{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-add-div{
+    width: 100%;
+    text-align: right;
+}
