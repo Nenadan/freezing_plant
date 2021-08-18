@@ -52,9 +52,8 @@ var Providers = ()=>{
 
     var deleteUser = (position) =>{
         
-        
        if(window.confirm("Are you sure you want to delete provider?")===true){
-            
+            axios.post(`http://localhost:5000/deleteprovider/${position}`).then(response => console.log(response.data))
        }
         
     }
@@ -65,7 +64,7 @@ var Providers = ()=>{
     var renderNewProviders = ""
 
     getData.providerData.length>0? renderNewProviders = getData.providerData.map((provider, index)=>(
-        <Provider ID={provider.ID}  Name = {provider.Name} LastName={provider.LastName} Phone = {provider.Phone} Email={provider.Email} RegisterDate = {provider.RegisterDate} key={index}/>
+        <Provider ID={provider.ID}  Name = {provider.Name} LastName={provider.LastName} Phone = {provider.Phone} Email={provider.Email} RegisterDate = {provider.RegisterDate} key={index} deleteUser={()=>deleteUser(provider.ID)}/>
     )): renderNewProviders=""
 
 
