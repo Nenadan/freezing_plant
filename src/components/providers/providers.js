@@ -14,25 +14,16 @@ var Providers = ()=>{
         email: "",
         phone: "",
         providerData: [],
-        providerData2: [],
         renderUserData: "Hello"
 
     })
 
     useEffect(()=>{
-        if(localStorage.getItem('providers')===null){
-            localStorage.setItem('providers', JSON.stringify([]))
-        }else{
-            var storageData =JSON.parse(localStorage.getItem('providers'));
-            setData({
-                ...getData,
-                providerData: storageData,
-            })
-        }
+
         axios.get('http://localhost:5000/providers').then(response => 
         setData({
         ...getData,
-        providerData2: response.data
+        providerData: response.data
     })
     )
     }, [])
@@ -56,44 +47,24 @@ var Providers = ()=>{
     
     var addProvider = (name, lastName, phone, email) => {
 
-        var today = new Date()
-        var date =today.getDate()+'/'+(today.getMonth()+1)+'/'+ today.getFullYear();
-
-
-        var newProvider = {"Name": name, "LastName": lastName, "Phone":phone, "Email":email, "RegisterDate": date, ID: getData.providerData.length+1}
-        var oldArray = getData.providerData;
-        oldArray.push(newProvider)
-        setData({
-            ...getData,
-            providerData: oldArray
-        })
-        localStorage.setItem('providers', JSON.stringify(getData.providerData))
+        
     }
 
     var deleteUser = (position) =>{
         
         
        if(window.confirm("Are you sure you want to delete provider?")===true){
-            var providerArray = getData.providerData;
-            providerArray.splice(position, 1);
-            setData({
-                ...getData,
-                providerData: providerArray
-            })
-            localStorage.setItem('providers', JSON.stringify(providerArray))
+            
        }
         
     }
 
 
-    var renderData = getData.providerData.map((user, index)=>(
-        <Provider ID={user.ID} Name={user.Name} LastName={user.LastName} Phone={user.Phone} Email={user.Email } RegisterDate={user.RegisterDate} key={index} deleteUser = {()=>deleteUser(index)} />
-    ))
 
     
     var renderNewProviders = ""
 
-    getData.providerData2.length>0? renderNewProviders = getData.providerData2.map((provider, index)=>(
+    getData.providerData.length>0? renderNewProviders = getData.providerData.map((provider, index)=>(
         <Provider ID={provider.ID}  Name = {provider.Name} LastName={provider.LastName} Phone = {provider.Phone} Email={provider.Email} RegisterDate = {provider.RegisterDate} key={index}/>
     )): renderNewProviders=""
 
@@ -132,7 +103,6 @@ var Providers = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                  {renderData} 
                   {renderNewProviders}
                 </tbody>
             </table>
