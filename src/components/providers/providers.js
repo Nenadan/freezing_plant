@@ -3,6 +3,7 @@ import axios from 'axios';
 import Provider from './provider/provider';
 
 import '../providers/providers.css';
+import user from '../../assets/add-user.png'
 
 var Providers = ()=>{
 
@@ -28,6 +29,16 @@ var Providers = ()=>{
     )
     }, [])
 
+
+    var updateProviders = () =>{
+        axios.get('http://localhost:5000/providers').then(response => 
+        setData({
+        ...getData,
+        providerData: response.data
+            })
+        )
+    }
+
     var renderAddUserFunction = () =>{
         if(getData.renderAddUser===false){
             setData({
@@ -46,8 +57,13 @@ var Providers = ()=>{
     }
     
     var addProvider = (name, lastName, phone, email) => {
+        var today = new Date()
+        var date = today.getDate() + "-" + today.getMonth() + "-" + today.getFullYear()
 
-        
+        console.log(name + lastName + phone + email + " " +date)
+        axios.post(`http://localhost:5000/add/${name}/${lastName}/${phone}/${email}/${date}`).then(response=>console.log(response));
+
+        updateProviders();
     }
 
     var deleteUser = (position) =>{
@@ -55,6 +71,7 @@ var Providers = ()=>{
        if(window.confirm("Are you sure you want to delete provider?")===true){
             axios.post(`http://localhost:5000/deleteprovider/${position}`).then(response => console.log(response.data))
        }
+       updateProviders()
         
     }
 
@@ -86,7 +103,7 @@ var Providers = ()=>{
                 </div>
             </div>
             <div className="btn-add-div">
-                <button className="btn btn-success ml-auto" style={{marginRight:"20px"}} onClick={()=>renderAddUserFunction()}>Create new provider</button>
+                <button className="btn btn-success ml-auto" style={{marginRight:"20px"}} onClick={()=>renderAddUserFunction()}><img src={user} height="30px"/> Create new provider</button>
             </div>
             
             <table className="table table-striped">
@@ -102,7 +119,7 @@ var Providers = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                  {renderNewProviders}
+                  {renderNewProviders!==""?renderNewProviders:null}
                 </tbody>
             </table>
             
